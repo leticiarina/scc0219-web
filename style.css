@@ -12,7 +12,7 @@ body {
 	padding-top: 15px;
 }
 
-.menu a {
+.link-menu {
 	font-size: 18px;
 	padding: 10px 20px 20px 20px;
 	color: #f3f0d7;
@@ -20,8 +20,12 @@ body {
 	vertical-align: middle;
 }
 
-.menu a:hover {
+a:hover, .deslogar a:hover, .usuario hover {
 	color: #d8b384;
+}
+
+.usuario:hover {
+	background-color: #3fab9b
 }
 
 .menu form{
@@ -32,6 +36,11 @@ body {
 label{
 	color: #f3f0d7;
 	font-size: 13px;
+}
+
+.deslogar a{
+	color: #f3f0d7;
+	text-decoration: none;
 }
 
 input[type=text], [type=password]{
@@ -81,6 +90,12 @@ input[type=submit]{
 	text-align: center;
 }
 
+#usuarioActions{
+	margin: auto;
+	width: 90%;
+	text-align: left;
+}
+
 .servicos{
 	width: 250px;
 	height: 500px;
@@ -91,6 +106,18 @@ input[type=submit]{
 	border-style: solid;
 	border-color: #cee5d0;
 	background-color: #f3f0d7;
+}
+
+.usuario{
+	width: 1000px;
+	height: 100px;
+	margin: 10px 10px 10px 10px;
+	padding: 5px 5px 5px 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: #cee5d0;
+	background-color: #f3f0d7;
+	text-align: left;
 }
 
 #PetPic {
@@ -116,6 +143,10 @@ h1{
 
 h2 {
 	text-transform: uppercase;
+	color : #5e454b;
+}
+
+h5 {
 	color : #5e454b;
 }
 
