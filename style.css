@@ -2,6 +2,7 @@
 
 body {
 	font-family: 'Montserrat';
+	background-color: AliceBlue;
 }
 
 .menu {
@@ -56,6 +57,11 @@ input[type=submit]{
 
 }
 
+#cadastrado {
+	text-align : center;
+
+}
+
 .apresentacao:after {
     content : "";
     display: block;
@@ -66,7 +72,7 @@ input[type=submit]{
 	height: 330px;
 	margin-top: 20px;
 	padding-top: 80px;
-    opacity : 0.3;
+    opacity : 0.4;
 }
 
 #conteudo{
@@ -87,6 +93,13 @@ input[type=submit]{
 	background-color: #f3f0d7;
 }
 
+#PetPic {
+	width: 400px;
+	border-width : 4px;
+	border-style: solid;
+	border-color: #3fab9b;
+}
+
 img{
 	width: 250px;
 }
@@ -95,6 +108,15 @@ h1{
 	text-transform: uppercase;
 	color:  #5e454b;
 	font-size: 30px;
+}
+
+#dadosPet {
+	width: 100%;
+}
+
+h2 {
+	text-transform: uppercase;
+	color : #5e454b;
 }
 
 h6{
@@ -111,4 +133,18 @@ h6{
 	width: 100%;
 	padding: 10px 0px 10px 200px;
 	color: #f3f0d7;
+}
+
+ul {
+	list-style-type: none;
+	text-align: left;
+}
+
+li {
+	text-transform: uppercase;
+	color: #5e454b;
+}
+
+p {
+	color:  #5e454b;
 }
