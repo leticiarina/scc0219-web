@@ -38,6 +38,11 @@ label{
 	font-size: 13px;
 }
 
+.contatoinput{
+	color: #5e454b;
+	font-size: 13px;
+}
+
 .deslogar a{
 	color: #f3f0d7;
 	text-decoration: none;
@@ -117,6 +122,14 @@ input[type=submit]{
 	border-style: solid;
 	border-color: #cee5d0;
 	background-color: #f3f0d7;
+	text-align: left;
+}
+
+.Contato{
+	width: 1000px;
+	height: 380px;
+	margin: 10px 10px 10px 10px;
+	padding: 5px 5px 5px 5px;
 	text-align: left;
 }
 
