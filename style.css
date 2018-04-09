@@ -10,6 +10,7 @@ body {
 	height: 60px;
 	width: 100%;
 	padding-top: 15px;
+
 }
 
 .link-menu {
@@ -20,7 +21,7 @@ body {
 	vertical-align: middle;
 }
 
-a:hover, .deslogar a:hover, .usuario hover {
+a:hover, .info-user a:hover, .usuario hover {
 	color: #d8b384;
 }
 
@@ -36,6 +37,14 @@ a:hover, .deslogar a:hover, .usuario hover {
 label{
 	color: #f3f0d7;
 	font-size: 13px;
+}
+
+.info-user, .info-user a{
+	float: right;
+	padding-right: 15px; 
+	color: #f3f0d7;
+	font-size: 13px;
+	text-decoration: none;
 }
 
 .produtoBotao{
@@ -195,12 +204,9 @@ h1{
 	width: 100%;
 }
 
-h2 {
+h2, h5 {
+	font-family: 'Montserrat';
 	text-transform: uppercase;
-	color : #5e454b;
-}
-
-h5 {
 	color : #5e454b;
 }
 
@@ -231,6 +237,7 @@ li {
 }
 
 p {
+	font-family: 'Montserrat';
 	color:  #5e454b;
 }
 
