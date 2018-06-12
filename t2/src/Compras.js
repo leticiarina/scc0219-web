@@ -10,6 +10,7 @@ class Compras extends React.Component{
 	constructor(props){
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
+
 	}
 
 	handleSubmit(event){
@@ -17,45 +18,80 @@ class Compras extends React.Component{
 	}
 
 	render(){
-		if(localStorage.getItem("purchases") == null){
+		if(localStorage.getItem("compra") == null){
 			return(	
 				<div>
 					<h1>Compras</h1>
 					<p>Nenhuma compra realizada.</p>
-			    	<p>
-			    		<NavLink to="/painel/compras/novo">Realizar compra</NavLink>
-					</p>
+			    <p><NavLink to="/painel/compras/novo">Realizar compra</NavLink></p>
 				</div>
 			);
 		} else {
 
-			var purchases = JSON.parse(localStorage.getItem("purchases"));
-			var purchasesCards = [];
-
-			for(let i=0; i<purchases.length; i++){
-				purchasesCards.push(printPurchase(purchases[i]));
-			}
-
-			return purchasesCards;
+			var compras = JSON.parse(localStorage.getItem("compra"));
+			return printPurchase(compras)
 		}		
 	}
 }
 
-function printPurchase(){
-	return(
-		<div class="card">
-			<div class="card-body">
-				<h5 class="card-title"></h5>
-			</div>
+function printPurchase(compras){
+	
+	return (
+		<div>
+			<p><NavLink to="/painel/compras/novo">Realizar compra</NavLink></p>
+			{compras.map(element => { 
+				return(
+				  <div>
+				    
+				    <hr style={{padding: 0, marginTop: "5px", marginBottom: "0.5px"}}/>
+				    <hr style={{padding: 0, marginTop: 0, marginBottom: "5px"}}/>
+						
+						<div className="card">
+							<div className="card-body">
+								<h5 className="card-title">Brinquedo de Gato</h5>
+								<p className='default'>{element.brinquedoGato}</p>
+							</div>
+						</div>
+
+						<div className="card">
+							<div className="card-body">
+								<h5 className="card-title">Casa de Gato</h5>
+								<p className='default'>{element.casaGato}</p>
+							</div>
+						</div>
+
+						<div className="card">
+							<div className="card-body">
+								<h5 className="card-title">Comida de Cachorro</h5>
+								<p className='default'>{element.comidaCachorro}</p>
+							</div>
+						</div>
+
+						<div className="card">
+							<div className="card-body">
+								<h5 className="card-title">Comida de Gato</h5>
+								<p className='default'>{element.comidaGato}</p>
+							</div>
+						</div>
+				  </div>
+				)
+			})
+		}
 		</div>
-	);
+	)
 }
 
 class NovaCompra extends React.Component{
 
 	constructor(props){
 		super(props);
-		this.state = {comidaGato: '0', brinquedoGato: '0', casaGato: '0', comidaCachorro: '0'};
+		this.state = {
+			comidaGato: '0', 
+			brinquedoGato: '0', 
+			casaGato: '0', 
+			comidaCachorro: '0'
+		};
+
 		this.handleChangeComidaGato = this.handleChangeComidaGato.bind(this);
 		this.handleChangeBrinquedoGato = this.handleChangeBrinquedoGato.bind(this);
 		this.handleChangeCasaGato = this.handleChangeCasaGato.bind(this);
@@ -81,77 +117,85 @@ class NovaCompra extends React.Component{
 
 	handleSubmit(event){
 		this.setState({submitted: true});
-		localStorage.setItem("compra", JSON.stringify(this.state));		
+
+		let compras = localStorage.getItem("compra")
+
+		// If no purchase has been made, create an array, else just receive it
+		compras = compras ? JSON.parse(compras) : []
+
+		// Add new compra object to array
+		compras.push(this.state)
+
+		// Update compra value in database
+		localStorage.setItem("compra", JSON.stringify(compras));
 	}
 
 	render(){
-		if(localStorage.getItem("compra") == null){
+		// if(localStorage.getItem("compra") == null){
 			return(
-				<div class="p-2 md-5">
+				<div className="p-2 md-5">
 					<h1>Nova Compra</h1>
-						<form onSubmit={this.handleSubmit}>
-					      <div class="row masthead-followup row m-0 border border-white">
-					        <div class="col p-3 p-md-5 border border-white">
+					      <div className="row masthead-followup row m-0 border border-white">
+					        <div className="col p-3 p-md-5 border border-white">
 						          <h3>Comida para gatos</h3>
 						          <img src={catfood} alt="Comida para gato"/>
 						          <p>Comida para gatos whiskas sabor carne 10Kg.</p>
 						          <p>R$110</p>
-						          <hr class="half-rule"/>
-									<div class="form-group">
-										<label>Quantidade</label>
-							            <input class="form-control form-control-sm" type="number" min="0" value={this.state.comidaGato} onChange={this.handleChangeComidaGato}/>
-									</div>
-						        </div>
+								      <hr className="half-rule"/>
+											<div className="form-group">
+												<label>Quantidade</label>
+									      <input className="form-control form-control-sm" type="number" min="0" value={this.state.comidaGato} onChange={this.handleChangeComidaGato}/>
+											</div>
+						      </div>
 
-						        <div class="col p-3 p-md-5 bg-light-green  border border-white">
+						        <div className="col p-3 p-md-5 bg-light-green  border border-white">
 						          <h3>Brinquedo para gatos</h3>
 						          <img src={cattoy} alt="Brinquedo para gatos"/>
 						          <p>Brinquedo para gatos com catnip.</p>
 						          <p>R$5</p>
-						          <hr class="half-rule"/>
-									<div class="form-group">
+						          <hr className="half-rule"/>
+									<div className="form-group">
 										<label>Quantidade</label>
-							            <input class="form-control form-control-sm" type="number" min="0" value={this.state.brinquedoGato} onChange={this.handleChangeBrinquedoGato}/>
+							            <input className="form-control form-control-sm" type="number" min="0" value={this.state.brinquedoGato} onChange={this.handleChangeBrinquedoGato}/>
 									</div>
 						        </div>
 
-						        <div class="col p-3 p-md-5 bg-light-green border border-white">
+						        <div className="col p-3 p-md-5 bg-light-green border border-white">
 						          <h3>Casa para gatos</h3>
 						          <img src={cathouse} alt="Casa para gatos"/>
 						          <p>Casa com 2 andares e arranhador para gatos.</p>
 						          <p>R$199,90</p>
-						          <hr class="half-rule"/>
-									<div class="form-group">
+						          <hr className="half-rule"/>
+									<div className="form-group">
 										<label>Quantidade</label>
-							            <input class="form-control form-control-sm" type="number" min="0" value={this.state.casaGato} onChange={this.handleChangeCasaGato}/>
+							            <input className="form-control form-control-sm" type="number" min="0" value={this.state.casaGato} onChange={this.handleChangeCasaGato}/>
 									</div>
 						        </div>
 						        
-						        <div class="col p-3 p-md-5 bg-light-green border border-white">
+						        <div className="col p-3 p-md-5 bg-light-green border border-white">
 							        <h3>Comida para cachorros</h3>
 							        <img src={dogfood} alt="Comida para cachorro"/>
 							        <p>Comida para cachorros Pedigree sabor frango com vegetais 10Kg.</p>
 						            <p>R$80</p>
-							        <hr class="half-rule"/>
-									<div class="form-group">
+							        <hr className="half-rule"/>
+									<div className="form-group">
 										<label>Quantidade</label>
-						            	<input class="form-control form-control-sm" type="number" min="0" value={this.state.comidaCachorro} onChange={this.handleChangeComidaCachorro}/>
+						            	<input className="form-control form-control-sm" type="number" min="0" value={this.state.comidaCachorro} onChange={this.handleChangeComidaCachorro}/>
 									</div>
 						        </div>
 					      </div>
-				        <div class="row">
-							<div class="form-group col p-3">
-				            	<button class="btn btn-sm purple-btn" type="submit">Comprar</button>
+				        <div className="row">
+							<div className="form-group col p-3">
+				        <button className="btn btn-sm purple-btn" type="submit" onClick={this.handleSubmit}><NavLink to="/painel/compras">Comprar</NavLink></button>
 							</div>
 						</div>
-					</form>
 				</div>
 			);
-		} else {
-			return(
-				<Redirect to="/painel/compras"/>
-			);
-		}
+		// } else {
+		// 	return(
+		// 		<Redirect to="/painel/compras"/>
+		// 	);
+		// }
 	}
 }
 
